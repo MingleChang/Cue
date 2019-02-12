@@ -19,32 +19,56 @@
 #include <event2/bufferevent_compat.h>
 #include <event2/bufferevent_struct.h>
 
+#define MAXLINE 1024
+
+struct event_base *base;
+struct bufferevent *event;
+struct bufferevent *io_event;
+
 static void read_callback(struct bufferevent *bev, void *user_data) {
-    
+    char buff[MAXLINE];
+    memset(buff, 0, MAXLINE);
+    size_t len = bufferevent_read(bev, buff, MAXLINE - 1);
+    printf("recieve => %s", buff);
 }
 static void write_callback(struct bufferevent *bev, void *user_data) {
     
 }
 static void error_callback(struct bufferevent *bev, short what, void *user_data) {
+    if (what & BEV_EVENT_CONNECTED) {
+        return;
+    }
+    bufferevent_free(bev);
+    event_base_loopexit(base, 0);
+}
+
+static void io_read_callback(struct bufferevent *bev, void *user_data) {
+    char buff[MAXLINE];
+    memset(buff, 0, MAXLINE);
+    size_t len = bufferevent_read(bev, buff, MAXLINE - 1);
+    bufferevent_write(event, buff, len);
+}
+static void io_write_callback(struct bufferevent *bev, void *user_data) {
+    
+}
+static void io_error_callback(struct bufferevent *bev, short what, void *user_data) {
     
 }
 
 int main(int argc, const char * argv[]) {
-    printf("hello\n");
+    printf("Start Client\n");
     int result;
-    struct event_base *base;
     struct evdns_base *dns_base;
-    struct bufferevent *event;
-    struct bufferevent *inevent;
     base = event_base_new();
     dns_base = evdns_base_new(base, 1);
     event = bufferevent_socket_new(base, -1, BEV_OPT_CLOSE_ON_FREE);
-    inevent = bufferevent_socket_new(base, STDIN_FILENO, BEV_OPT_CLOSE_ON_FREE);
+    io_event = bufferevent_socket_new(base, STDIN_FILENO, BEV_OPT_CLOSE_ON_FREE);
     bufferevent_socket_connect_hostname(event, dns_base, AF_UNSPEC, "127.0.0.1", 8080);
     bufferevent_setcb(event, read_callback, NULL, error_callback, base);
     bufferevent_enable(event, EV_READ | EV_PERSIST);
+    bufferevent_setcb(io_event, io_read_callback, NULL, io_error_callback, base);
+    bufferevent_enable(io_event, EV_READ | EV_PERSIST);
     event_base_dispatch(base);
     event_base_free(base);
-    bufferevent_free(event);
     return 0;
 }
