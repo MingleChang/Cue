@@ -17,26 +17,22 @@
 #include <event2/buffer_compat.h>
 #include <event2/bufferevent_compat.h>
 #include <event2/bufferevent_struct.h>
+#include "cue.h"
 
-struct connect {
-    evutil_socket_t fd;
-    struct bufferevent bev;
-    unsigned int buffer_length;
-    char *buffer;
-};
+struct event_base *base;
+struct evconnlistener *listenner;
 
 static void read_callback(struct bufferevent *bev, void *user_data) {
-    char buffer[2048];
-    memset(buffer, 0, 2048);
-    size_t n = bufferevent_read(bev, buffer, 2048);
+    char buffer[MAXLINE];
+    memset(buffer, 0, MAXLINE);
+    size_t n = bufferevent_read(bev, buffer, MAXLINE - 1);
     printf("%s", buffer);
     bufferevent_write(bev, buffer, n);
 }
 static void write_callback(struct bufferevent *bev, void *user_data) {
-    
 }
 static void error_callback(struct bufferevent *bev, short what, void *user_data) {
-    
+    bufferevent_free(bev);
 }
 static void listener_callback(struct evconnlistener *listener, evutil_socket_t fd, struct sockaddr *sa, int socklen, void *user_data) {
     struct event_base *base = user_data;
@@ -49,8 +45,6 @@ static void listener_callback(struct evconnlistener *listener, evutil_socket_t f
 
 int main(int argc, const char * argv[]) {
     int result;
-    struct event_base *base;
-    struct evconnlistener *listenner;
     struct evutil_addrinfo hints, *res;
     
     base = event_base_new();

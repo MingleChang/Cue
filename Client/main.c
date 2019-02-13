@@ -18,18 +18,17 @@
 #include <event2/buffer_compat.h>
 #include <event2/bufferevent_compat.h>
 #include <event2/bufferevent_struct.h>
-
-#define MAXLINE 1024
+#include "cue.h"
 
 struct event_base *base;
 struct bufferevent *event;
 struct bufferevent *io_event;
 
 static void read_callback(struct bufferevent *bev, void *user_data) {
-    char buff[MAXLINE];
-    memset(buff, 0, MAXLINE);
-    size_t len = bufferevent_read(bev, buff, MAXLINE - 1);
-    printf("recieve => %s", buff);
+    char buffer[MAXLINE];
+    memset(buffer, 0, MAXLINE);
+    size_t len = bufferevent_read(bev, buffer, MAXLINE - 1);
+    printf("recieve => %s", buffer);
 }
 static void write_callback(struct bufferevent *bev, void *user_data) {
     

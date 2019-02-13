@@ -49,6 +49,7 @@
 		4260592E22042D860033A86E /* libevent_pthreads.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libevent_pthreads.a; path = ../../../../../usr/local/lib/libevent_pthreads.a; sourceTree = "<group>"; };
 		4260592F22042D860033A86E /* libevent_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libevent_core.a; path = ../../../../../usr/local/lib/libevent_core.a; sourceTree = "<group>"; };
 		4260593022042D860033A86E /* libevent_extra.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libevent_extra.a; path = ../../../../../usr/local/lib/libevent_extra.a; sourceTree = "<group>"; };
+		42E356D32213F1F4007D841A /* cue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cue.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +81,7 @@
 		4260590C22042D140033A86E = {
 			isa = PBXGroup;
 			children = (
+				42E356D22213F1C3007D841A /* src */,
 				4260591922042D3D0033A86E /* Server */,
 				4260592422042D4D0033A86E /* Client */,
 				4260591822042D3D0033A86E /* Products */,
@@ -121,6 +123,14 @@
 				4260592D22042D860033A86E /* libevent.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		42E356D22213F1C3007D841A /* src */ = {
+			isa = PBXGroup;
+			children = (
+				42E356D32213F1F4007D841A /* cue.h */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
