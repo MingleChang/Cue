@@ -23,9 +23,9 @@ struct event_base *base;
 struct evconnlistener *listenner;
 
 static void read_callback(struct bufferevent *bev, void *user_data) {
-    char buffer[MAXLINE];
-    memset(buffer, 0, MAXLINE);
-    size_t n = bufferevent_read(bev, buffer, MAXLINE - 1);
+    char buffer[CUE_MAXLINE];
+    memset(buffer, 0, CUE_MAXLINE);
+    size_t n = bufferevent_read(bev, buffer, CUE_MAXLINE - 1);
     printf("%s", buffer);
     bufferevent_write(bev, buffer, n);
 }

@@ -25,14 +25,14 @@ struct bufferevent *event;
 struct bufferevent *io_event;
 
 static void read_callback(struct bufferevent *bev, void *user_data) {
-    char buffer[MAXLINE];
-    memset(buffer, 0, MAXLINE);
-    size_t len = bufferevent_read(bev, buffer, MAXLINE - 1);
+    char buffer[CUE_MAXLINE];
+    memset(buffer, 0, CUE_MAXLINE);
+    size_t len = bufferevent_read(bev, buffer, CUE_MAXLINE - 1);
     printf("recieve => %s", buffer);
 }
-static void write_callback(struct bufferevent *bev, void *user_data) {
-    
-}
+//static void write_callback(struct bufferevent *bev, void *user_data) {
+//    
+//}
 static void error_callback(struct bufferevent *bev, short what, void *user_data) {
     if (what & BEV_EVENT_CONNECTED) {
         return;
@@ -42,14 +42,14 @@ static void error_callback(struct bufferevent *bev, short what, void *user_data)
 }
 
 static void io_read_callback(struct bufferevent *bev, void *user_data) {
-    char buff[MAXLINE];
-    memset(buff, 0, MAXLINE);
-    size_t len = bufferevent_read(bev, buff, MAXLINE - 1);
+    char buff[CUE_MAXLINE];
+    memset(buff, 0, CUE_MAXLINE);
+    size_t len = bufferevent_read(bev, buff, CUE_MAXLINE - 1);
     bufferevent_write(event, buff, len);
 }
-static void io_write_callback(struct bufferevent *bev, void *user_data) {
-    
-}
+//static void io_write_callback(struct bufferevent *bev, void *user_data) {
+//
+//}
 static void io_error_callback(struct bufferevent *bev, short what, void *user_data) {
     
 }
