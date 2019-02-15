@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4226C16A2214FD770088B1D7 /* protocol.c in Sources */ = {isa = PBXBuildFile; fileRef = 4226C1692214FD770088B1D7 /* protocol.c */; };
+		42347C0B221669DE00862EF5 /* connect.c in Sources */ = {isa = PBXBuildFile; fileRef = 42347C0A221669DE00862EF5 /* connect.c */; };
+		42347C0C22166A7900862EF5 /* connect.c in Sources */ = {isa = PBXBuildFile; fileRef = 42347C0A221669DE00862EF5 /* connect.c */; };
+		42347C0D22166A7C00862EF5 /* protocol.c in Sources */ = {isa = PBXBuildFile; fileRef = 4226C1692214FD770088B1D7 /* protocol.c */; };
 		4260591B22042D3D0033A86E /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 4260591A22042D3D0033A86E /* main.c */; };
 		4260592622042D4D0033A86E /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 4260592522042D4D0033A86E /* main.c */; };
 		4260593122042D860033A86E /* libevent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4260592D22042D860033A86E /* libevent.a */; };
@@ -44,6 +47,8 @@
 /* Begin PBXFileReference section */
 		4226C1682214FD770088B1D7 /* protocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = protocol.h; sourceTree = "<group>"; };
 		4226C1692214FD770088B1D7 /* protocol.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = protocol.c; sourceTree = "<group>"; };
+		42347C09221669DE00862EF5 /* connect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = connect.h; sourceTree = "<group>"; };
+		42347C0A221669DE00862EF5 /* connect.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = connect.c; sourceTree = "<group>"; };
 		4260591722042D3D0033A86E /* Server */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Server; sourceTree = BUILT_PRODUCTS_DIR; };
 		4260591A22042D3D0033A86E /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		4260592322042D4D0033A86E /* Client */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Client; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +147,8 @@
 			children = (
 				4226C1672214FD550088B1D7 /* protocol */,
 				42E356D32213F1F4007D841A /* cue.h */,
+				42347C09221669DE00862EF5 /* connect.h */,
+				42347C0A221669DE00862EF5 /* connect.c */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -222,6 +229,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42347C0B221669DE00862EF5 /* connect.c in Sources */,
 				4260591B22042D3D0033A86E /* main.c in Sources */,
 				4226C16A2214FD770088B1D7 /* protocol.c in Sources */,
 			);
@@ -231,6 +239,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42347C0D22166A7C00862EF5 /* protocol.c in Sources */,
+				42347C0C22166A7900862EF5 /* connect.c in Sources */,
 				4260592622042D4D0033A86E /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
