@@ -50,3 +50,5 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+Cue.xcodeproj/xcuserdata/mingle.xcuserdatad/xcschemes/xcschememanagement.plist
+Cue.xcodeproj/project.xcworkspace/xcuserdata/mingle.xcuserdatad/UserInterfaceState.xcuserstate
