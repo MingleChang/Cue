@@ -9,5 +9,10 @@
 #define client_h
 
 #include <stdio.h>
+#include "connect.h"
+
+extern struct cue_connect *client;
+
+void clientReadData(void *user_data);
 
 #endif /* client_h */

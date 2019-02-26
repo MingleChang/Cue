@@ -14,6 +14,10 @@ struct cue_connect {
     int fd;
     struct bufferevent *event;
     
+    uint32_t head_len;
+    void *head;
+    
+    uint32_t buffer_max_len;
     uint32_t buffer_len;
     void *buffer;
 };

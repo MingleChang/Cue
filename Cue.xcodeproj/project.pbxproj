@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4226C16A2214FD770088B1D7 /* protocol.c in Sources */ = {isa = PBXBuildFile; fileRef = 4226C1692214FD770088B1D7 /* protocol.c */; };
-		42347C0B221669DE00862EF5 /* connect.c in Sources */ = {isa = PBXBuildFile; fileRef = 42347C0A221669DE00862EF5 /* connect.c */; };
-		42347C0C22166A7900862EF5 /* connect.c in Sources */ = {isa = PBXBuildFile; fileRef = 42347C0A221669DE00862EF5 /* connect.c */; };
 		42347C0D22166A7C00862EF5 /* protocol.c in Sources */ = {isa = PBXBuildFile; fileRef = 4226C1692214FD770088B1D7 /* protocol.c */; };
 		42348DC9221A86EA001AAA25 /* server.c in Sources */ = {isa = PBXBuildFile; fileRef = 42348DC8221A86EA001AAA25 /* server.c */; };
 		42348DCA221A87C4001AAA25 /* client.c in Sources */ = {isa = PBXBuildFile; fileRef = 42348DC5221A86DF001AAA25 /* client.c */; };
@@ -25,6 +23,8 @@
 		4260593622042D860033A86E /* libevent_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4260592F22042D860033A86E /* libevent_core.a */; };
 		4260593722042D860033A86E /* libevent_extra.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4260593022042D860033A86E /* libevent_extra.a */; };
 		4260593822042D860033A86E /* libevent_extra.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4260593022042D860033A86E /* libevent_extra.a */; };
+		82C8B5212225153C008BF084 /* connect.c in Sources */ = {isa = PBXBuildFile; fileRef = 82C8B5202225153C008BF084 /* connect.c */; };
+		82C8B5222225153C008BF084 /* connect.c in Sources */ = {isa = PBXBuildFile; fileRef = 82C8B5202225153C008BF084 /* connect.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,8 +51,6 @@
 /* Begin PBXFileReference section */
 		4226C1682214FD770088B1D7 /* protocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = protocol.h; sourceTree = "<group>"; };
 		4226C1692214FD770088B1D7 /* protocol.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = protocol.c; sourceTree = "<group>"; };
-		42347C09221669DE00862EF5 /* connect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = connect.h; sourceTree = "<group>"; };
-		42347C0A221669DE00862EF5 /* connect.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = connect.c; sourceTree = "<group>"; };
 		42348DC4221A86DF001AAA25 /* client.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = client.h; sourceTree = "<group>"; };
 		42348DC5221A86DF001AAA25 /* client.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = client.c; sourceTree = "<group>"; };
 		42348DC7221A86EA001AAA25 /* server.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = server.h; sourceTree = "<group>"; };
@@ -68,6 +66,8 @@
 		4260592F22042D860033A86E /* libevent_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libevent_core.a; path = ../../../../../usr/local/lib/libevent_core.a; sourceTree = "<group>"; };
 		4260593022042D860033A86E /* libevent_extra.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libevent_extra.a; path = ../../../../../usr/local/lib/libevent_extra.a; sourceTree = "<group>"; };
 		42E356D32213F1F4007D841A /* cue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cue.h; sourceTree = "<group>"; };
+		82C8B51F2225153C008BF084 /* connect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = connect.h; sourceTree = "<group>"; };
+		82C8B5202225153C008BF084 /* connect.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = connect.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +126,8 @@
 		42348DCB221A97C5001AAA25 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				82C8B5202225153C008BF084 /* connect.c */,
+				82C8B51F2225153C008BF084 /* connect.h */,
 				42348DCC221A97D7001AAA25 /* cue_list.h */,
 				42348DCD221A97D7001AAA25 /* cue_list.c */,
 			);
@@ -187,8 +189,6 @@
 				42348DC2221A86BD001AAA25 /* server */,
 				4226C1672214FD550088B1D7 /* protocol */,
 				42E356D32213F1F4007D841A /* cue.h */,
-				42347C09221669DE00862EF5 /* connect.h */,
-				42347C0A221669DE00862EF5 /* connect.c */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -269,9 +269,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42347C0B221669DE00862EF5 /* connect.c in Sources */,
 				4260591B22042D3D0033A86E /* main.c in Sources */,
 				42348DCE221A97D7001AAA25 /* cue_list.c in Sources */,
+				82C8B5212225153C008BF084 /* connect.c in Sources */,
 				42348DC9221A86EA001AAA25 /* server.c in Sources */,
 				4226C16A2214FD770088B1D7 /* protocol.c in Sources */,
 			);
@@ -283,8 +283,8 @@
 			files = (
 				42348DCA221A87C4001AAA25 /* client.c in Sources */,
 				42347C0D22166A7C00862EF5 /* protocol.c in Sources */,
+				82C8B5222225153C008BF084 /* connect.c in Sources */,
 				42348DCF221A9865001AAA25 /* cue_list.c in Sources */,
-				42347C0C22166A7900862EF5 /* connect.c in Sources */,
 				4260592622042D4D0033A86E /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
