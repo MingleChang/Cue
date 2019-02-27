@@ -36,4 +36,6 @@ struct cue_protocol {
     void *body;
 };
 
+struct cue_protocol cue_protocol_init(void *data, size_t len);
+
 #endif /* protocol_h */

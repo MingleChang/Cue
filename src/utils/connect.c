@@ -17,6 +17,12 @@ struct cue_connect * cue_connect_new(struct bufferevent *bev) {
 
 void cue_connect_clear(struct cue_connect *connect) {
     connect->buffer_len = 0;
+    connect->head_len = 0;
+    connect->buffer_max_len = 0;
+    if (connect->head != NULL) {
+        free(connect->head);
+        connect->head = NULL;
+    }
     if (connect->buffer != NULL) {
         free(connect->buffer);
         connect->buffer = NULL;

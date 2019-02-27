@@ -16,12 +16,41 @@ struct bufferevent *io_event;
 
 static void read_callback(struct bufferevent *bev, void *user_data) {
     size_t len = 0;
-    uint32_t length = 0;
-    bufferevent_read(bev, &length, 4);
-    char buffer[length];
-    memset(buffer, 0, length);
-    len = bufferevent_read(bev, buffer, length);
-    printf("recieve => %s\n", buffer);
+    size_t length = 0;
+    while (1) {
+        if (client->head == NULL) {
+            client->head = malloc(4);
+            memset(client->head, 0, 4);
+            length = 4;
+            client->head_len = bufferevent_read(bev, client->head, length);
+            if (client->head_len < 4) {
+                return;
+            }else {
+                memcpy(&client->buffer_max_len, client->head, client->head_len);
+                client->buffer = malloc(client->buffer_max_len);
+            }
+        }else if (client->head_len < 4) {
+            length = 4 - client->head_len;
+            len = bufferevent_read(bev, client->head + client->head_len, length);
+            client->head_len = client->head_len + len;
+            if (client->head_len < 4) {
+                return;
+            }else {
+                memcpy(&client->buffer_max_len, client->head, client->head_len);
+                client->buffer = malloc(client->buffer_max_len);
+            }
+        }else {
+            length = client->buffer_max_len - client->buffer_len;
+            len = bufferevent_read(bev, client->buffer + client->buffer_len, length);
+            client->buffer_len = client->buffer_len + len;
+            if (len < length){
+                return;
+            }else if(client->buffer_len == client->buffer_max_len) {
+                printf("recieve => %s\n", client->buffer);
+                cue_connect_clear(client);
+            }
+        }
+    }
 }
 //static void write_callback(struct bufferevent *bev, void *user_data) {
 //    
@@ -62,7 +91,7 @@ int main(int argc, const char * argv[]) {
     bufferevent_socket_connect_hostname(event, dns_base, AF_UNSPEC, "172.16.40.198", 8080);
     bufferevent_setcb(event, read_callback, NULL, error_callback, base);
     bufferevent_enable(event, EV_READ | EV_PERSIST);
-    bufferevent_setwatermark(event, EV_READ, 4, 32);
+//    bufferevent_setwatermark(event, EV_READ, 4, 4);
     bufferevent_setcb(io_event, io_read_callback, NULL, io_error_callback, base);
     bufferevent_enable(io_event, EV_READ | EV_PERSIST);
     client = cue_connect_new(event);
