@@ -25,7 +25,10 @@ void cue_connect_clear(struct cue_connect *connect) {
 
 void cue_connect_free(struct cue_connect *connect) {
     cue_connect_clear(connect);
-    bufferevent_free(connect->event);
+    if (connect->event != NULL) {
+        bufferevent_free(connect->event);
+        connect->event = NULL;
+    }
     free(connect);
     
 }

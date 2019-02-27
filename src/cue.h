@@ -25,6 +25,7 @@
 
 #include "protocol.h"
 #include "connect.h"
+#include "cue_list.h"
 
 #define CUE_MAXLINE 2048
 

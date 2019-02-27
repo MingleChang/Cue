@@ -9,5 +9,8 @@
 #define server_h
 
 #include <stdio.h>
+#include "cue.h"
+
+extern struct cue_list *clients;
 
 #endif /* server_h */
