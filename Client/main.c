@@ -82,7 +82,6 @@ static void io_error_callback(struct bufferevent *bev, short what, void *user_da
 
 int main(int argc, const char * argv[]) {
     printf("Start Client\n");
-    int result;
     struct evdns_base *dns_base;
     base = event_base_new();
     dns_base = evdns_base_new(base, 1);
