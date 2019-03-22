@@ -87,7 +87,7 @@ int main(int argc, const char * argv[]) {
     dns_base = evdns_base_new(base, 1);
     event = bufferevent_socket_new(base, -1, BEV_OPT_CLOSE_ON_FREE);
     io_event = bufferevent_socket_new(base, STDIN_FILENO, BEV_OPT_CLOSE_ON_FREE);
-    bufferevent_socket_connect_hostname(event, dns_base, AF_UNSPEC, "172.16.40.198", 8080);
+    bufferevent_socket_connect_hostname(event, dns_base, AF_UNSPEC, "127.0.0.1", 8080);
     bufferevent_setcb(event, read_callback, NULL, error_callback, base);
     bufferevent_enable(event, EV_READ | EV_PERSIST);
 //    bufferevent_setwatermark(event, EV_READ, 4, 4);
